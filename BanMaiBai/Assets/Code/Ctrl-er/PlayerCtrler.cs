@@ -1,10 +1,14 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using LTAUnityBase.Base.DesignPattern;
 public class PlayerCtrler : PlaneCtrler
 {
+    public float deltaX, deltaY = 0;
+    public Vector3 pos;
+    Touch touch;
+    public float DelayBetweenShoot;
     //public Slider slider_hp;
     //public Text levelTxt;
     //public GameObject hpPoint;
@@ -27,9 +31,16 @@ public class PlayerCtrler : PlaneCtrler
     //    //slider_hp.maxValue = hp;
     //   // slider_exp.maxValue = expToLevelUp;
     //}
+    private float time = 0;
+    void Start()
+    {
 
+    }
     void Update()
     {
+        pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        pos.z = 0;
+        touch1();
         //
         //slider_hp.value = hp;
         //if (hp <= 0)
@@ -41,13 +52,11 @@ public class PlayerCtrler : PlaneCtrler
 
         //slider_exp.value = currentExp;
         //expCalculate();
-
-        //
-        float horizontal = Input.GetAxis("Horizontal");
-        float vertical = Input.GetAxis("Vertical");
-        Vector3 direction = new Vector3(horizontal, vertical,0f);
-        Move(direction);
-
+        time++;
+        if (time % DelayBetweenShoot == 0)
+        {
+            Shoot();
+        }
         //DestroyWhenOutOfHP();
     }
     //public void expCalculate()
@@ -58,14 +67,50 @@ public class PlayerCtrler : PlaneCtrler
     //        level++;
     //    }
     //}
+    public void move(Vector3 pos)
+    {
+        this.transform.position = Vector3.Lerp(transform.position, pos, 5);
+        // hàm di chuyển
+    }
+    public void touch1()
+    {
+        //hàm chạm di chuyển
+        if (Input.touchCount > 0)
+        {
+
+            touch = Input.GetTouch(0);
+            Vector2 touchpos = Camera.main.ScreenToWorldPoint(touch.position);
+            switch (touch.phase)
+            {
+                case TouchPhase.Began:
+                    deltaX = touchpos.x - transform.position.x;
+                    deltaY = touchpos.y - transform.position.y;
+                    break;
+                case TouchPhase.Moved:
+                    this.transform.position = new Vector2(touchpos.x - deltaX, touchpos.y - deltaY);
+                    //rigidbody.MovePosition(new Vector2(touchpos.x - deltaX, touchpos.y - deltaY));
+                    break;
+                case TouchPhase.Ended:
+                    transform.position = transform.position;
+                    //rigidbody.velocity = Vector2.zero;
+                    break;
+            }
+        }
+    }
+    IEnumerator aha()
+    {
+        this.gameObject.transform.GetChild(0).gameObject.SetActive(true);
+        yield return new WaitForSeconds(4f);
+        this.gameObject.transform.GetChild(0).gameObject.SetActive(false);
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.transform.gameObject.CompareTag("enemyBullet"))
-        {
-            hp = bullet.CalculateHP(hp, level);
-            //Destroy(this.bullet);
-            //Instantiate(bullet.explosion, gameObject.transform.position, gameObject.transform.rotation);
-        }
+        //if (collision.transform.gameObject.CompareTag("enemyBullet"))
+        //{
+        //    hp = bullet.CalculateHP(hp, level);
+        //    //Destroy(this.bullet);
+        //    //Instantiate(bullet.explosion, gameObject.transform.position, gameObject.transform.rotation);
+        //}
         //if (collision.transform.gameObject.CompareTag("health"))
         //{
         //    hp = hoiMau.CalculateHP(hp);

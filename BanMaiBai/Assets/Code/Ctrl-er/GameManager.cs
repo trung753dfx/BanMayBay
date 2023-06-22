@@ -11,8 +11,9 @@ public class GameManager : MonoBehaviour
     public Text scoreTxt;
     public Text levelTxt;
 
-    public int pointExp;
-
+    //public int pointExp;
+    private float time=0;
+    public Transform[] _gate;
     private void Awake()
     {
         //this.RegisterListener(EventID.EnemyDestroy, (sender, param) =>
@@ -25,6 +26,11 @@ public class GameManager : MonoBehaviour
     {
         //scoreTxt.text = "Score : " + scorePlayer.ToString();
         //levelTxt.text = "Level: " + Player.Instance.level.ToString();
+        time++;
+        if (time % 1000 == 0)
+        {
+            genEnemyTank();
+        }
     }
     //public void addScore()
     //{
@@ -33,7 +39,8 @@ public class GameManager : MonoBehaviour
     //}
     public void genEnemyTank()
     {
-        Instantiate(planeEnemy, gameManager.Instance.transform.position, gameManager.Instance.transform.rotation);
+        var gate = Random.Range(0, _gate.Length - 2);
+        Instantiate(planeEnemy.gameObject, _gate[gate].position, _gate[gate].rotation);
         //Instantiate(tankEnemy, gameManager.Instance.transform.position + Vector3.up, gameManager.Instance.transform.rotation);
     }
 }

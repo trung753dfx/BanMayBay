@@ -12,9 +12,10 @@ public class BulletCtrler : MoveCtrl
 
     public void Update()
     {
-        if (time == 500)
+        if (time == 750)
         {
-            SmartPool.Instance.Despawn(bullet.gameObject);
+            //SmartPool.Instance.Despawn(bullet.gameObject);
+            Destroy(this.gameObject);
         }
         time++;
         Move(transform.up);
