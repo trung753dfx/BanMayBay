@@ -1,10 +1,13 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Core.Pool;
 
 public class PlaneCtrler : MoveCtrl
 {
+    public float deltaX, deltaY = 0;
+    public Vector3 pos;
+    Touch touch;
     public Transform plane;
     public BulletCtrler bullet;
     public Transform transhoot;
@@ -14,7 +17,9 @@ public class PlaneCtrler : MoveCtrl
     // Update is called once per frame
     void Update()
     {
-        
+        pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        pos.z = 0;
+        touch1();
     }
     protected override void Move(Vector3 direction)
     {
@@ -23,6 +28,31 @@ public class PlaneCtrler : MoveCtrl
             plane.up = direction;
         }
         base.Move(direction);
+    }
+    public void touch1()
+    {
+        //hàm chạm di chuyển
+        if (Input.touchCount > 0)
+        {
+
+            touch = Input.GetTouch(0);
+            Vector2 touchpos = Camera.main.ScreenToWorldPoint(touch.position);
+            switch (touch.phase)
+            {
+                case TouchPhase.Began:
+                    deltaX = touchpos.x - transform.position.x;
+                    deltaY = touchpos.y - transform.position.y;
+                    break;
+                case TouchPhase.Moved:
+                    this.transform.position = new Vector2(touchpos.x - deltaX, touchpos.y - deltaY);
+                    //rigidbody.MovePosition(new Vector2(touchpos.x - deltaX, touchpos.y - deltaY));
+                    break;
+                case TouchPhase.Ended:
+                    transform.position = transform.position;
+                    //rigidbody.velocity = Vector2.zero;
+                    break;
+            }
+        }
     }
     //protected void RotationGun(Vector3 direction)
     //{
@@ -39,7 +69,7 @@ public class PlaneCtrler : MoveCtrl
         {
             //Destroy(this.gameObject);
             //gameManager.Instance.genEnemyTank();
-            gameManager.Instance.addScore();
+            //gameManager.Instance.addScore();
         }
     }
     public void CreateBullet()

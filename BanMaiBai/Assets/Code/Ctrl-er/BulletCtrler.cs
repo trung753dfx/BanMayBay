@@ -6,7 +6,7 @@ using Core.Pool;
 public class BulletCtrler : MoveCtrl
 {
     public float time = 0;
-    public SmokeCtrler explosion;
+    //public SmokeCtrler explosion;
     public BulletCtrler bullet;
     public float damage;
 
@@ -34,7 +34,7 @@ public class BulletCtrler : MoveCtrl
     public void CreateSmoke()
     {
 
-        var smokeclone = SmartPool.Instance.Spawn(explosion.gameObject, this.transform.position, this.transform.rotation);
+        //var smokeclone = SmartPool.Instance.Spawn(explosion.gameObject, this.transform.position, this.transform.rotation);
     }
 
     protected virtual void BulletEx()

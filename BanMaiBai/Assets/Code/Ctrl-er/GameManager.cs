@@ -15,22 +15,22 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        this.RegisterListener(EventID.EnemyDestroy, (sender, param) =>
-        {
-            addScore();
-        });
+        //this.RegisterListener(EventID.EnemyDestroy, (sender, param) =>
+        //{
+        //    addScore();
+        //});
     }
 
     private void Update()
     {
-        scoreTxt.text = "Score : " + scorePlayer.ToString();
-        levelTxt.text = "Level: " + Player.Instance.level.ToString();
+        //scoreTxt.text = "Score : " + scorePlayer.ToString();
+        //levelTxt.text = "Level: " + Player.Instance.level.ToString();
     }
-    public void addScore()
-    {
-        scorePlayer += 10;
-        Player.Instance.currentExp += 1;
-    }
+    //public void addScore()
+    //{
+    //    scorePlayer += 10;
+    //    Player.Instance.currentExp += 1;
+    //}
     public void genEnemyTank()
     {
         Instantiate(planeEnemy, gameManager.Instance.transform.position, gameManager.Instance.transform.rotation);
