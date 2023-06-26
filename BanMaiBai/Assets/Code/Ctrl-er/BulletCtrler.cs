@@ -6,7 +6,7 @@ using Core.Pool;
 public class BulletCtrler : MoveCtrl
 {
     public float time = 0;
-    //public SmokeCtrler explosion;
+    public SmokeCtrler explosion;
     public BulletCtrler bullet;
     public float damage;
 

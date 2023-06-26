@@ -133,7 +133,7 @@ GameObject:
   m_Component:
   - component: {fileID: 150709819}
   m_Layer: 0
-  m_Name: Gate1 (4)
+  m_Name: Gate5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -164,7 +164,7 @@ GameObject:
   m_Component:
   - component: {fileID: 409938805}
   m_Layer: 0
-  m_Name: Gate1 (3)
+  m_Name: Gate4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -462,7 +462,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1319397499}
   m_Layer: 0
-  m_Name: Gate1 (2)
+  m_Name: Gate3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -554,7 +554,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2060301554}
   m_Layer: 0
-  m_Name: Gate1 (1)
+  m_Name: Gate2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -26,11 +26,11 @@ public class PlayerCtrler : PlaneCtrler
     //public TangDamage tangDamage;
     //public TangSpd tangSpd;
 
-    //private void Awake()
-    //{
-    //    //slider_hp.maxValue = hp;
-    //   // slider_exp.maxValue = expToLevelUp;
-    //}
+    private void awake()
+    {
+        //slider_hp.maxvalue = hp;
+        //slider_exp.maxvalue = exptolevelup;
+    }
     private float time = 0;
     void Start()
     {
@@ -70,7 +70,6 @@ public class PlayerCtrler : PlaneCtrler
     public void move(Vector3 pos)
     {
         this.transform.position = Vector3.Lerp(transform.position, pos, 5);
-        // hàm di chuyển
     }
     public void touch1()
     {
@@ -105,12 +104,12 @@ public class PlayerCtrler : PlaneCtrler
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        //if (collision.transform.gameObject.CompareTag("enemyBullet"))
-        //{
-        //    hp = bullet.CalculateHP(hp, level);
-        //    //Destroy(this.bullet);
-        //    //Instantiate(bullet.explosion, gameObject.transform.position, gameObject.transform.rotation);
-        //}
+        if (collision.transform.gameObject.CompareTag("enemy"))
+        {
+            hp = bullet.CalculateHP(hp, level);
+            Destroy(this.bullet);
+            Instantiate(bullet.explosion, gameObject.transform.position, gameObject.transform.rotation);
+        }
         //if (collision.transform.gameObject.CompareTag("health"))
         //{
         //    hp = hoiMau.CalculateHP(hp);

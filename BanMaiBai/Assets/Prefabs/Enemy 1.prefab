@@ -77,7 +77,7 @@ GameObject:
   - component: {fileID: 3780900055179669426}
   m_Layer: 0
   m_Name: Enemy 1
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -219,7 +219,6 @@ MonoBehaviour:
   ts3: {fileID: 1034412178}
   hp: 100
   level: 0
-  DelayBetweenShoot: 100
 --- !u!1 &5128895444511085021
 GameObject:
   m_ObjectHideFlags: 0
